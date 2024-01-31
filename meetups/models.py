@@ -1,21 +1,19 @@
 
 from django.db import models
-from django.contrib.auth.models import AbstractUser
+from django.contrib.auth.models import User
 
 
 
 
 # Create your models here.
 
-class User(AbstractUser):
-    name = models.CharField(max_length=200, null=True)
-    email = models.EmailField(unique=True, null=True)
-    bio = models.TextField(null=True)
-    avatar = models.ImageField(null=True)
-    groups=models.CharField(max_length=200, null=True)
-    user_permissions=models.CharField(max_length=200, null=True)
-    USERNAME_FIELD = 'email'
-    REQUIRED_FIELDS = []
+# class CustomUser(AbstractUser):
+#     name = models.CharField(max_length=200, null=True)
+#     email = models.EmailField(unique=True, null=True)
+#     bio = models.TextField(null=True)
+#     avatar = models.ImageField(null=True)
+#     USERNAME_FIELD = 'email'
+#     REQUIRED_FIELDS = []
 
 
 class Location(models.Model):
@@ -36,6 +34,7 @@ class Meetup(models.Model):
       slug=models.SlugField(unique=True)
       description=models.TextField()
       image=models.ImageField(upload_to='images')
+      user = models.ForeignKey(User, on_delete=models.CASCADE)
       location=models.ForeignKey(Location, on_delete=models.CASCADE, null=True)
       participant=models.ManyToManyField(Participant, blank=True, null=True)
 

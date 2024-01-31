@@ -1,7 +1,7 @@
 from django.shortcuts import render,redirect
 from django.contrib.auth import login,authenticate
 #from django.contrib.auth.forms import UserCreationForm
-from .models import Meetup, Participant
+from .models import Meetup, Participant, User
 from .forms import RegistrationForm,  MyUserRegistrationForm, Profile
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
@@ -21,7 +21,7 @@ def loginPage(request):
         email.lower()
         password = request.POST.get('password')
         try:
-            user=myUser.objects.get(email=email)  
+            user=User.objects.get(email=email)  
         except:
             messages.error(request, 'User does not exist')
         user=authenticate(request, email=email, password=password)

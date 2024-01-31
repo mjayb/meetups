@@ -17,6 +17,6 @@ admin.site.register(Location, LocationAdmin )
 admin.site.register(Participant)
 admin.site.register(About)
 admin.site.register(Contact)
-admin.site.register(User)
+
 
 
